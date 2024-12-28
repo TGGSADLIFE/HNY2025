@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Happy New Year 2025</title>
     <style>
+        /* CSS Styles */
         body {
             display: flex;
             justify-content: center;
@@ -14,9 +15,11 @@
             color: white;
             font-family: Arial, sans-serif;
             text-align: center;
+            overflow: hidden;
         }
         #balloon {
             font-size: 100px;
+            position: relative;
             transition: transform 1s;
         }
         #fireworks {
@@ -25,6 +28,7 @@
             margin-top: 20px;
         }
         .firework {
+            position: absolute;
             animation: explode 1s forwards;
         }
         @keyframes explode {
@@ -35,37 +39,60 @@
 </head>
 <body>
 
-<div id="balloon">2024</div>
-<div id="fireworks" class="firework">🎆🎇 Happy New Year 2025! 🎇🎆</div>
+    <!-- HTML Structure -->
+    <div id="balloon">2024</div>
+    <div id="fireworks" class="firework">🎆🎇 Happy New Year 2025! 🎇🎆</div>
 
-<script>
-    // Function to animate the number change
-    function animateNewYear() {
-        const balloon = document.getElementById('balloon');
-        const fireworks = document.getElementById('fireworks');
+    <script>
+        // JavaScript Code
+        // Function to animate the number change
+        function animateNewYear() {
+            const balloon = document.getElementById('balloon');
+            const fireworks = document.getElementById('fireworks');
 
-        // Change to 2025 after 2 seconds
-        setTimeout(() => {
-            balloon.innerHTML = '2024';
-            balloon.style.transform = 'translateY(-50px)';
-        }, 2000);
+            // Change to 2024 after 2 seconds
+            setTimeout(() => {
+                balloon.innerHTML = '2024';
+                balloon.style.transform = 'translateY(-50px)';
+            }, 2000);
 
-        // Change to 2025 after 4 seconds
-        setTimeout(() => {
-            balloon.innerHTML = '2025';
-            balloon.style.transform = 'translateY(0)';
-        }, 4000);
+            // Change to 5 after 4 seconds
+            setTimeout(() => {
+                balloon.innerHTML = '5';
+                balloon.style.transform = 'translateY(0)';
+                balloon.style.fontSize = '100px'; // Reset font size for 5
+                balloon.style.transition = 'transform 1s';
+                balloon.style.transform = 'translateY(-100px)'; // Move 4 up
+            }, 4000);
 
-        // Show fireworks after 5 seconds
-        setTimeout(() => {
-            balloon.style.display = 'none';
-            fireworks.style.display = 'block';
-        }, 6000);
-    }
+            // Show fireworks after 6 seconds
+            setTimeout(() => {
+                balloon.style.display = 'none';
+                fireworks.style.display = 'block';
+            }, 6000);
+        }
 
-    // Start the animation
-    window.onload = animateNewYear;
-</script>
+        // Function to create firework effect on click
+        function createFirework(event) {
+            const firework = document.createElement('div');
+            firework.className = 'firework';
+            firework.innerHTML = '🎆';
+            firework.style.left = `${event.clientX}px`;
+            firework.style.top = `${event.clientY}px`;
+            document.body.appendChild(firework);
+
+            // Remove firework after animation
+            setTimeout(() => {
+                firework.remove();
+            }, 1000);
+        }
+
+        // Start the animation
+        window.onload = animateNewYear;
+
+        // Add click event listener for fireworks
+        document.body.addEventListener('click', createFirework);
+    </script>
 
 </body>
 </html>
