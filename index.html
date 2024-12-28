@@ -6,85 +6,66 @@
     <title>Happy New Year 2025</title>
     <style>
         body {
-            background-color: #000;
-            color: #fff;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #282c34;
+            color: white;
+            font-family: Arial, sans-serif;
             text-align: center;
         }
-        
         #balloon {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            font-size: 200px;
-            font-weight: bold;
-            color: #ff69b4;
+            font-size: 100px;
+            transition: transform 1s;
         }
-        
         #fireworks {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100vh;
-            background-color: #000;
-            z-index: -1;
+            display: none;
+            font-size: 50px;
+            margin-top: 20px;
         }
-        
         .firework {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            width: 10px;
-            height: 10px;
-            border-radius: 50%;
-            background-color: #ff69b4;
-            animation: firework 2s infinite;
+            animation: explode 1s forwards;
         }
-        
-        @keyframes firework {
-            0% {
-                opacity: 0;
-                transform: translate(-50%, -50%) scale(1);
-            }
-            50% {
-                opacity: 1;
-                transform: translate(-50%, -50%) scale(2);
-            }
-            100% {
-                opacity: 0;
-                transform: translate(-50%, -50%) scale(1);
-            }
+        @keyframes explode {
+            0% { transform: scale(1); opacity: 1; }
+            100% { transform: scale(2); opacity: 0; }
         }
     </style>
 </head>
 <body>
-    <h1 id="balloon">2024</h1>
-    <div id="fireworks"></div>
-    
-    <script>
+
+<div id="balloon">2024</div>
+<div id="fireworks" class="firework">🎆🎇 Happy New Year 2025! 🎇🎆</div>
+
+<script>
+    // Function to animate the number change
+    function animateNewYear() {
+        const balloon = document.getElementById('balloon');
+        const fireworks = document.getElementById('fireworks');
+
+        // Change to 2025 after 2 seconds
         setTimeout(() => {
-            document.getElementById("balloon").innerHTML = "202";
-            setTimeout(() => {
-                document.getElementById("balloon").innerHTML = "2025";
-                setTimeout(() => {
-                    createFireworks();
-                }, 500);
-            }, 500);
-        }, 1000);
-        
-        function createFireworks() {
-            const fireworksContainer = document.getElementById("fireworks");
-            for (let i = 0; i < 50; i++) {
-                const firework = document.createElement("div");
-                firework.classList.add("firework");
-                firework.style.top = `${Math.random() * 100}%`;
-                firework.style.left = `${Math.random() * 100}%`;
-                firework.style.animationDelay = `${Math.random() * 2}s`;
-                fireworksContainer.appendChild(firework);
-            }
-        }
-    </script>
+            balloon.innerHTML = '2024';
+            balloon.style.transform = 'translateY(-50px)';
+        }, 2000);
+
+        // Change to 2025 after 4 seconds
+        setTimeout(() => {
+            balloon.innerHTML = '2025';
+            balloon.style.transform = 'translateY(0)';
+        }, 4000);
+
+        // Show fireworks after 5 seconds
+        setTimeout(() => {
+            balloon.style.display = 'none';
+            fireworks.style.display = 'block';
+        }, 6000);
+    }
+
+    // Start the animation
+    window.onload = animateNewYear;
+</script>
+
 </body>
 </html>
