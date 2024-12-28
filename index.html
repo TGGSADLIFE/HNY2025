@@ -1,16 +1,90 @@
 <!DOCTYPE html>
-<html lang="en" >
+<html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>happy new year fireworks </title>
-  
-
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy New Year 2025</title>
+    <style>
+        body {
+            background-color: #000;
+            color: #fff;
+            text-align: center;
+        }
+        
+        #balloon {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 200px;
+            font-weight: bold;
+            color: #ff69b4;
+        }
+        
+        #fireworks {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100vh;
+            background-color: #000;
+            z-index: -1;
+        }
+        
+        .firework {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background-color: #ff69b4;
+            animation: firework 2s infinite;
+        }
+        
+        @keyframes firework {
+            0% {
+                opacity: 0;
+                transform: translate(-50%, -50%) scale(1);
+            }
+            50% {
+                opacity: 1;
+                transform: translate(-50%, -50%) scale(2);
+            }
+            100% {
+                opacity: 0;
+                transform: translate(-50%, -50%) scale(1);
+            }
+        }
+    </style>
 </head>
 <body>
-<!-- partial:index.partial.html -->
-
-<!-- partial -->
-  <script  src="./script.js"></script>
-
+    <h1 id="balloon">2024</h1>
+    <div id="fireworks"></div>
+    
+    <script>
+        setTimeout(() => {
+            document.getElementById("balloon").innerHTML = "202";
+            setTimeout(() => {
+                document.getElementById("balloon").innerHTML = "2025";
+                setTimeout(() => {
+                    createFireworks();
+                }, 500);
+            }, 500);
+        }, 1000);
+        
+        function createFireworks() {
+            const fireworksContainer = document.getElementById("fireworks");
+            for (let i = 0; i < 50; i++) {
+                const firework = document.createElement("div");
+                firework.classList.add("firework");
+                firework.style.top = `${Math.random() * 100}%`;
+                firework.style.left = `${Math.random() * 100}%`;
+                firework.style.animationDelay = `${Math.random() * 2}s`;
+                fireworksContainer.appendChild(firework);
+            }
+        }
+    </script>
 </body>
 </html>
